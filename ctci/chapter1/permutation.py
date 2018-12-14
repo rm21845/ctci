@@ -15,8 +15,11 @@ def check_perm(string_one, string_two):
         ValueError: one or all of the strings are empty.
     """    
     if string_one and string_two:
-        if len(string_one) == len(string_two):
-            return True
-        return False        
+        if len(string_one) != len(string_two): return False
+        
+        for character in string_one:
+            if character not in string_two:
+                return False
+        return True 
     raise ValueError('empty string input given')
     
