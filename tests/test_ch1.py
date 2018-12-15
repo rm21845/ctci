@@ -80,7 +80,10 @@ class TestStrCompression(unittest.TestCase):
 
 
 class TestStrRotation(unittest.TestCase):
-    pass
+    def test_rotate(self):
+        string_one = 'waterbottle'
+        string_two = 'erbottlewat'
+        self.assertTrue(strrotation.rotate(string_one, string_two))
 
 class TestUnique(unittest.TestCase):
     

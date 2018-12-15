@@ -2,7 +2,7 @@
 
 
 def compress(string):
-    """Creates a compressed strong using repeat characters
+    """Creates a compressed string using repeat characters.
     
     Args:
         string_one: any string to be compressed.
