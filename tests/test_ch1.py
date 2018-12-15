@@ -1,4 +1,5 @@
 import unittest
+import numpy as np 
 from ctci.chapter1 import unique, permutation, oneaway, palindrome, rotatematrix, \
     strcompression, strrotation, urlify, zeromatrix
 
@@ -110,7 +111,10 @@ class TestURLify(unittest.TestCase):
         self.assertEqual('Mr%20John%20Smith', urlify.to_url(string))
 
 class TestZeroMatrix(unittest.TestCase):
-    pass
+    def test_2_by_3(self):
+        arr = np.array([[1, 2, 3],[4, 0, 5]])
+        expected = np.array([[1, 0, 3],[0, 0, 0]]).tolist()
+        self.assertEqual(expected, zeromatrix.write_zeros(arr).tolist())
 
 if __name__ == '__main__':
     unittest.main()
