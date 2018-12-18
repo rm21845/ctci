@@ -35,6 +35,26 @@ class TestLinkedList(unittest.TestCase):
         self.a.insert(2)
         self.a.insert(4)
         self.assertEqual(self.a.head.value, 4)
+        
+    def test_len_empty(self):
+        
+        self.assertEqual(len(self.a), 0)
+
+    def test_len_one(self):
+        self.a.insert(3)
+        self.a.insert(2)
+        
+        self.assertEqual(len(self.a), 2)
+
+    def test_len_two(self):
+        self.a.insert(3)
+        self.a.insert(2)
+        self.a.insert(2)
+        self.a.insert(2)
+        self.a.insert(2)
+        self.a.insert(2)
+        
+        self.assertEqual(len(self.a), 6)
 
     def test_search_one(self):
         self.a.insert(44)
@@ -51,6 +71,16 @@ class TestLinkedList(unittest.TestCase):
         found_node = self.a.search(78)
         self.assertIsInstance(found_node, Node)
         self.assertEqual(found_node.value, 78)
+
+    def test_search_three(self):
+        self.a.insert(44)
+        self.a.insert(66)
+        self.a.insert(67)
+        self.a.insert(34)
+        self.a.insert(78)
+        found_node = self.a.search(67)
+        self.assertIsInstance(found_node, Node)
+        self.assertEqual(found_node.value, 67)
 
     def test_search_no_exist(self):
         self.a.insert(44)
@@ -84,6 +114,27 @@ class TestSinglyLinkedList(unittest.TestCase):
     
     def setUp(self):
         self.a = SinglyLinkedList()
+
+    def test_len_empty(self):
+        
+        self.assertEqual(len(self.a), 0)
+
+    def test_len_one(self):
+        self.a.insert(3)
+        self.a.insert(2)
+        
+        self.assertEqual(len(self.a), 2)
+
+    def test_len_two(self):
+        self.a.insert(3)
+        self.a.insert(2)
+        self.a.insert(2)
+        self.a.insert(2)
+        self.a.insert(2)
+        self.a.insert(2)
+        
+        self.assertEqual(len(self.a), 6)
+
 
     def test_insert_zero(self):
         self.a.insert(0)
@@ -143,6 +194,26 @@ class TestDoublyLinkedList(unittest.TestCase):
     
     def setUp(self):
         self.a = DoublyLinkedList()
+
+    def test_len_empty(self):
+        
+        self.assertEqual(len(self.a), 0)
+
+    def test_len_one(self):
+        self.a.insert(3)
+        self.a.insert(2)
+        
+        self.assertEqual(len(self.a), 2)
+
+    def test_len_two(self):
+        self.a.insert(3)
+        self.a.insert(2)
+        self.a.insert(2)
+        self.a.insert(2)
+        self.a.insert(2)
+        self.a.insert(2)
+        
+        self.assertEqual(len(self.a), 6)
 
     def test_insert_zero(self):
         self.a.insert(0)

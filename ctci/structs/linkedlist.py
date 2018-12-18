@@ -66,6 +66,23 @@ class LinkedList(object):
     def head(self, new_node):
         self._head = new_node
 
+    def __iter__(self):
+        self.a = self.head
+        return self 
+
+    def __next__(self):
+        if self.a:
+            result = self.a
+            self.a = self.a.next_node  
+            return result
+        else:
+            raise StopIteration
+
+    def __len__(self):
+        """Gives the number of nodes in LinkedList."""
+        return sum([1 for node in self])
+
+
     def search(self, value):
         """Search for first occurence of value given.
 
@@ -83,7 +100,7 @@ class LinkedList(object):
         try:
             current = self.head
             while True:
-                if self.head.value != value:
+                if current.value != value:
                     current = current.next_node
                 else:
                     return current

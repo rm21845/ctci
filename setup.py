@@ -8,14 +8,17 @@ with open(path.join(this_path, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='ctci',
-    version='0.1.0',
+    version='0.2.0',
     description='Cracking the Coding Interview 6th Ed. Solutions',
     long_description=long_description,
     long_description_content_type='text/markdown',
     author='rm21845',
     author_email='rmdavis@buffalo.edu',
+    install_requires=[
+        'numpy==1.15.4',
+    ],
     classifiers= [
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'Topic :: Education',
         'License :: OSI Approved :: MIT License',
