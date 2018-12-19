@@ -1,5 +1,5 @@
 import unittest
-from ctci.structs.linkedlist import LinkedList, SinglyLinkedList
+from ctci.structs.linkedlist import Node, LinkedList, SinglyLinkedList
 from ctci.chapter2 import delmidnode, intersection, loopdetect, palindrome, partition, returnkthtolast, \
     rmdups, sumlists
 
@@ -7,14 +7,138 @@ from ctci.chapter2 import delmidnode, intersection, loopdetect, palindrome, part
 class TestDelMidNode(unittest.TestCase):
     pass 
 
+
 class TestIntersection(unittest.TestCase):
-    pass 
+    
+    def setUp(self):
+        self.a = SinglyLinkedList()
+        self.b = SinglyLinkedList()
+
+    def test_same_len(self):
+        c = Node(96)
+
+        self.a.insert(1)
+        self.a.insert_node(c)
+        self.a.insert(2)
+
+        self.b.insert(1)
+        self.b.insert_node(c)
+        self.b.insert(2)
+        self.assertEqual(intersection.intersect(self.a, self.b), c)
+
+    def test_diff_len_one(self):
+        c = Node(96)
+        self.a.insert_node(c)
+        self.a.insert(3)
+
+        self.b.insert_node(c)
+        self.b.insert(5)
+        self.b.insert(6)
+        self.b.insert(7)
+        self.b.insert(8)
+        self.assertEqual(intersection.intersect(self.a, self.b), c)
+
+    def test_diff_len_two(self):
+        a = Node(23)
+        b = Node(45)
+        c = Node(96)
+
+        self.a.insert_node(a)
+        self.a.insert_node(b)
+        self.a.insert_node(c)
+        self.a.insert(3)
+
+        self.b.insert_node(a)
+        self.b.insert_node(b)
+        self.b.insert_node(c)
+        self.b.insert(5)
+        self.b.insert(6)
+        self.b.insert(7)
+        self.b.insert(8)
+        self.assertEqual(intersection.intersect(self.a, self.b), c)
 
 class TestLoopDetect(unittest.TestCase):
     pass 
 
+
 class Testpalindrome(unittest.TestCase):
-    pass 
+
+    def setUp(self):
+        self.a = SinglyLinkedList()
+
+    def test_stack_true_one(self):
+        self.a.insert('c')
+        self.a.insert('i')
+        self.a.insert('v')
+        self.a.insert('i')
+        self.a.insert('c')
+        self.assertTrue(palindrome.check_with_stack(self.a))
+
+    def test_stack_true_two(self):
+        self.a.insert('a')
+        self.a.insert('n')
+        self.a.insert('n')
+        self.a.insert('a')
+        self.assertTrue(palindrome.check_with_stack(self.a))
+    
+    def test_stack_false_one(self):
+        self.a.insert('h')
+        self.a.insert('e')
+        self.a.insert('l')
+        self.a.insert('l')
+        self.a.insert('o')
+        self.assertFalse(palindrome.check_with_stack(self.a))
+
+    def test_stack_false_two(self):
+        self.a.insert('c')
+        self.a.insert('r')
+        self.a.insert('i')
+        self.a.insert('n')
+        self.a.insert('g')
+        self.a.insert('e')
+        self.assertFalse(palindrome.check_with_stack(self.a))
+    
+    def test_recurs_true_one(self):
+        self.a.insert('c')
+        self.a.insert('i')
+        self.a.insert('v')
+        self.a.insert('i')
+        self.a.insert('c')
+        self.assertTrue(palindrome.check_with_recur(self.a))
+
+    def test_recurs_true_two(self):
+        self.a.insert('a')
+        self.a.insert('n')
+        self.a.insert('n')
+        self.a.insert('a')
+        self.assertTrue(palindrome.check_with_recur(self.a))
+
+    def test_recurs_false_one(self):
+        self.a.insert('h')
+        self.a.insert('e')
+        self.a.insert('l')
+        self.a.insert('l')
+        self.a.insert('o')
+        self.assertFalse(palindrome.check_with_recur(self.a))
+    
+    #odd case
+    def test_recurs_false_two(self):
+        self.a.insert('d')
+        self.a.insert('e')
+        self.a.insert('i')
+        self.a.insert('r')
+        self.a.insert('t')
+        self.assertFalse(palindrome.check_with_recur(self.a))
+
+    #even case
+    def test_recurs_false_three(self):
+        self.a.insert('e')
+        self.a.insert('g')
+        self.a.insert('n')
+        self.a.insert('i')
+        self.a.insert('r')
+        self.a.insert('c')
+        self.assertFalse(palindrome.check_with_recur(self.a))
 
 class TestPartition(unittest.TestCase):
     pass 

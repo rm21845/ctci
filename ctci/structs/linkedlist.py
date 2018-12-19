@@ -126,6 +126,24 @@ class LinkedList(object):
             new_node = Node(value)
             self.head = new_node
 
+    def insert_node(self, new_node):
+        """Insert Node at the head of LinkedList.
+        
+        inserts a node into the head of the LinkedList. 
+        If there is a current head, the new node will be 
+        given head and the previous head will
+        become the new nodes next reference.
+
+        Args: 
+            node: a Node
+        """
+        if self.head:
+            new_node.next_node = self.head
+            self.head = new_node
+        else: 
+            self.head = new_node
+
+
     def delete(self, value):
         """Delete first occurence of value given.
         
