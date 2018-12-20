@@ -1,4 +1,5 @@
 import unittest
+from ctci.structs.stack import Stack
 from ctci.chapter3 import threeinone, stackmin, stackofplates, \
      queueviastacks, sortstack, animalshelter
 
@@ -251,11 +252,90 @@ class TestQueueViaStacks(unittest.TestCase):
         self.assertEqual(self.a.peek(), 4)
 
 class TestSortStack(unittest.TestCase):
-    pass 
+    
+    def setUp(self):
+        self.a = Stack()
+        self.b = Stack()
+        self.b.push(76)
+        self.b.push(58)
+        self.b.push(49)
+        self.b.push(36)
+        self.b.push(26)
+        self.b.push(22)
+        self.b.push(21)
+        self.b.push(10)
+        self.b.push(9)
+        self.b.push(8)
+        self.b.push(2)
+        self.b.push(1)
+
+    def test_one(self):
+        self.a.push(1)
+        self.a.push(22)
+        self.a.push(8)
+        self.a.push(10)
+        self.a.push(26)
+        self.a.push(58)
+        self.a.push(21)
+        self.a.push(36)
+        self.a.push(9)
+        self.a.push(49)
+        self.a.push(2)
+        self.a.push(76)
+
+        self.a = sortstack.sort_stack(self.a)
+
+        while not self.a.is_empty():
+            self.assertTrue(self.a.pop() == self.b.pop())
 
 
 class TestAnimalShelter(unittest.TestCase):
-    pass 
+    
+    def setUp(self):
+        self.a = animalshelter.AnimalShelter()
+        self.scar = animalshelter.Cat('Scar')
+        self.nyla = animalshelter.Cat('Nyla')
+        self.mufasa = animalshelter.Cat('Mufasa')
+        self.simba = animalshelter.Cat('Simba')
+        self.air_bud = animalshelter.Dog('AirBud')
+        self.skip = animalshelter.Dog('Skip')
+        self.clifford = animalshelter.Dog('Clifford')
+        self.lassie = animalshelter.Dog('Lassie')
+
+    def test_enqueue_dog(self):
+        self.a.enqueue(self.lassie)
+        self.assertEqual(self.a.dequeue_dog(), self.lassie)
+
+    def test_enqueue_cat(self):
+        self.a.enqueue(self.simba)
+        self.assertEqual(self.a.dequeue_cat(), self.simba)
+
+    def test_dequeue_cat(self):
+        self.a.enqueue(self.scar)
+        self.a.enqueue(self.nyla)
+        self.a.enqueue(self.mufasa)
+        self.a.enqueue(self.simba)
+        self.assertEqual(self.a.dequeue_cat(), self.scar)
+
+    def test_dequeue_dog(self):
+        self.a.enqueue(self.air_bud)
+        self.a.enqueue(self.skip)
+        self.a.enqueue(self.clifford)
+        self.a.enqueue(self.lassie)
+        self.a.dequeue_dog()
+        self.assertEqual(self.a.dequeue_dog(), self.skip)
+
+    def test_dequeue(self):
+        self.a.enqueue(self.air_bud)
+        self.a.enqueue(self.nyla)
+        self.a.enqueue(self.skip)
+        self.a.enqueue(self.clifford)
+        self.a.enqueue(self.lassie)
+        self.a.enqueue(self.scar)
+        self.a.enqueue(self.mufasa)
+        self.a.enqueue(self.simba)
+        self.assertEqual(self.a.dequeue(), self.air_bud)
+
 
 if __name__ == '__main__':
     unittest.main()
