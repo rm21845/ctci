@@ -42,7 +42,10 @@ class TestListOfDepths(unittest.TestCase):
 class TestMinimalTree(unittest.TestCase):
 
     def setUp(self):
-        pass
+        self.a = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    def test_one(self):
+        minimaltree.min_height(self.a) 
 
 
 class TestPathsWithSum(unittest.TestCase):
