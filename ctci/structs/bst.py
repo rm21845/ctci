@@ -81,26 +81,21 @@ class Tree(object):
             else: break
 
     def _delete(self, value, node):
-        print(node, 'NODE')
-        print(node.value, 'NODEVAL')
         if value < node.value:
             node.left = self._delete(value, node.left)
         elif value > node.value:
             node.right = self._delete(value, node.right)
-        #Case 3: has two children
         elif node.right and node.left:
-            pass
-        #Case 2: has one child
+            node.value = self.minimum(node.right).value
+            node.right = self._delete(node.value, node.right)
         elif node.right or node.left:
             if node.right:
                 node = node.right
             else:
                 node = node.left
-        #Case 1: leaf case
         elif not node.right and not node.left:
             node = None
         return node
-
 
     def delete(self, value):
         self.root = self._delete(value, self.root)
@@ -116,15 +111,45 @@ class Tree(object):
 
     def insert(self, value):
         self.root = self._insert(value, self.root)
+
+    def _in_order(self, node):
+        if node:
+            self._in_order(node.left)
+            print(node.value)
+            self._in_order(node.right)
             
     def in_order(self):
-        pass 
+        self._in_order(self.root)
 
+    def _pre_order(self, node):
+        if node:
+            print(node.value)
+            self._pre_order(node.left)
+            self._pre_order(node.right)
+            
     def pre_order(self):
-        pass 
+        self._pre_order(self.root)
+
+    def _post_order(self, node):
+        if node:
+            self._post_order(node.left)
+            self._post_order(node.right)
+            print(node.value)
 
     def post_order(self):
-        pass
+        self._post_order(self.root)
+
+    def minimum(self, node=None):
+        current = node or self.root        
+        while current.left:
+            current = current.left
+        return current
+
+    def maximum(self, node=None):
+        current = node or self.root        
+        while current.right:
+            current = current.right
+        return current
 
     def is_full(self):
         pass

@@ -100,11 +100,60 @@ class TestTree(unittest.TestCase):
         self.assertEqual(self.a.search(4), None)
 
     def test_delete_two_child(self):
-        pass 
+        self.a.insert(5)
+        self.a.insert(1)
+        self.a.insert(10)
+        self.a.delete(5)
+        self.assertEqual(self.a.search(5), None)
+        self.assertEqual(self.a.search(1).value, 1)
+        self.assertEqual(self.a.search(10).value, 10)
 
-    def test_delete_dne(self):
-        pass 
-    
+    def test_minimum(self):
+        self.a.insert(10)
+        self.a.insert(23)
+        self.a.insert(40)
+        self.a.insert(7)
+        self.a.insert(2)
+        self.assertEqual(self.a.minimum().value, 2)
+
+    def test_maximum(self):
+        self.a.insert(10)
+        self.a.insert(23)
+        self.a.insert(40)
+        self.a.insert(7)
+        self.a.insert(2)
+        self.assertEqual(self.a.maximum().value, 40)
+
+class TestTraversals(unittest.TestCase):
+
+    def setUp(self):
+        self.a = Tree()
+        self.a.insert(7)
+        self.a.insert(4)
+        self.a.insert(2)
+        self.a.insert(6)
+        self.a.insert(3)
+        self.a.insert(5)
+        self.a.insert(12)
+        self.a.insert(9)
+        self.a.insert(19)
+        self.a.insert(8)
+        self.a.insert(11)
+        self.a.insert(15)
+        self.a.insert(20)
+
+    def test_in_order(self):
+        print('\nIN_ORDER')
+        self.a.in_order()
+
+    def test_pre_order(self):
+        print('\nPRE_ORDER')
+        self.a.pre_order()
+
+    def test_post_order(self):
+        print('\nPOST_ORDER')
+        self.a.post_order()
+
 if __name__ == '__main__':
     unittest.main()
 
