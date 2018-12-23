@@ -1,4 +1,5 @@
 import unittest
+from ctci.structs.bst import Node
 from ctci.chapter4 import bstsequences, buildorder, checkbalanced, checksubtree, firstcomancestor, \
     listofdepths, minimaltree, pathswithsum, randomnode, routebetweennodes, successor, validatebst
 
@@ -17,9 +18,23 @@ class TestBuildOrder(unittest.TestCase):
 
 class TestCheckBalanced(unittest.TestCase):
 
-    def setUp(self):
-        pass
+    def test_height_two(self):
+        node = Node(2)
+        node.left = Node(1)
+        node.right = Node(3)
+        self.assertEqual(checkbalanced.height(node), 2)
 
+    def test_is_balanced(self):
+        node = Node(1)
+        node.left = Node(2)
+        node.right = Node(3)
+        self.assertTrue(checkbalanced.is_balanced(node))
+
+    def test_is_not_balanced(self):
+        node = Node(1)
+        node.left = Node(2)
+        node.left.left = Node(3)
+        self.assertFalse(checkbalanced.is_balanced(node))
 
 class TestCheckSubTree(unittest.TestCase):
 
